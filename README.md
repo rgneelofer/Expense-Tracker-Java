@@ -90,9 +90,9 @@ LinkedIn: [Sourabh Nayak](https://linkedin.com/in/sourabh-nayak-5842b5213)
 
 ---
 
-## 🌟 GitHub Repository
-
+## 🌟 GitHub Repository  
 [🔗 View this Project](https://github.com/rgneelofer/Expense-Tracker-Java)
 
----
 
+## 📄 License  
+This project is for educational purposes only and is not intended for commercial use.
