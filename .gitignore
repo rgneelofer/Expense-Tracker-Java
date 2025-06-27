@@ -1,0 +1,15 @@
+# Eclipse files and build outputs
+.metadata/
+.settings/
+bin/
+*.class
+
+# External JARs (like JDBC connector)
+mysql-connector-j-9.3.0/
+
+# OS / IDE trash
+.DS_Store
+Thumbs.db
+
+# Logs or temp
+*.log
