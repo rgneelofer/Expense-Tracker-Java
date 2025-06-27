@@ -21,7 +21,7 @@ public class ExpenseDAO {
 			return rowsInserted > 0;
 
 		} catch (SQLException e) {
-			System.out.println("❌ Error inserting expense:");
+			System.out.println("Error inserting expense:");
 			e.printStackTrace();
 			return false;
 		}
@@ -49,7 +49,7 @@ public class ExpenseDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("❌ Error fetching expenses:");
+			System.out.println("Error fetching expenses:");
 			e.printStackTrace();
 		}
 
@@ -85,7 +85,7 @@ public class ExpenseDAO {
 			return rowsDeleted > 0;
 
 		} catch (SQLException e) {
-			System.out.println("❌ Error deleting expense by ID:");
+			System.out.println("Error deleting expense by ID:");
 			e.printStackTrace();
 			return false;
 		}
@@ -103,7 +103,7 @@ public class ExpenseDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("❌ Error calculating total expenses:");
+			System.out.println("Error calculating total expenses:");
 			e.printStackTrace();
 		}
 
@@ -132,7 +132,7 @@ public class ExpenseDAO {
 	        }
 
 	    } catch (SQLException e) {
-	        System.out.println("❌ Error fetching by category:");
+	        System.out.println("Error fetching by category:");
 	        e.printStackTrace();
 	    }
 
@@ -161,7 +161,7 @@ public class ExpenseDAO {
 	        }
 
 	    } catch (SQLException e) {
-	        System.out.println("❌ Error fetching expenses by date:");
+	        System.out.println("Error fetching expenses by date:");
 	        e.printStackTrace();
 	    }
 

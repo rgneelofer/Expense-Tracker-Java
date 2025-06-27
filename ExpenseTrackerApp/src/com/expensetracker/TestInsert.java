@@ -2,7 +2,7 @@ package com.expensetracker;
 
 public class TestInsert {
     public static void main(String[] args) {
-        Expense exp = new Expense("Internet Bill", 1200.00, "Utilities", "2025-06-22");
+    	Expense exp = new Expense("Internet Bill", 1200.00, "Utilities", "2025-06-22", "Monthly broadband payment");
         ExpenseDAO dao = new ExpenseDAO();
 
         boolean success = dao.addExpense(exp);

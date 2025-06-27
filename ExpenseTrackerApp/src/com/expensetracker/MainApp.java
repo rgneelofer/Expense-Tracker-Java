@@ -24,7 +24,7 @@ public class MainApp {
 
 			switch (choice) {
 			case 1:
-				// ➕ Add Expense
+				// Add Expense
 				System.out.print("Enter Title       : ");
 				String title = scanner.nextLine();
 
@@ -46,18 +46,18 @@ public class MainApp {
 				boolean success = dao.addExpense(expense);
 
 				if (success) {
-					System.out.println("✅ Expense added successfully!");
+					System.out.println("Expense added successfully!");
 				} else {
-					System.out.println("❌ Failed to add expense.");
+					System.out.println("Failed to add expense.");
 				}
 				break;
 
 			case 2:
-				// 👀 View Expenses
+				// View Expenses
 				List<Expense> expenses = dao.getAllExpenses();
 
 				if (expenses.isEmpty()) {
-					System.out.println("⚠️ No expenses found.");
+					System.out.println("No expenses found.");
 				} else {
 					System.out.println("\n-------- All Expenses --------");
 					for (Expense exp : expenses) {
@@ -74,85 +74,75 @@ public class MainApp {
 				}
 				break;
 
-//			case 3:
-//				// ❌ Delete Expense by Title
-//				System.out.print("Enter the title of the expense to delete: ");
-//				String deleteTitle = scanner.nextLine();
-//
-//				boolean deleted = dao.deleteExpenseByTitle(deleteTitle);
-//				if (deleted) {
-//					System.out.println("✅ Expense deleted successfully.");
-//				} else {
-//					System.out.println("⚠️ No expense found with that title.");
-//				}
-//				break;
-
 			case 3:
-				// ❌ Delete Expense by ID
+				//Delete Expense by ID
 				System.out.print("Enter the ID of the expense to delete: ");
 				int deleteId = scanner.nextInt();
 				scanner.nextLine(); // consume newline
 
 				boolean deletedById = dao.deleteExpenseById(deleteId);
 				if (deletedById) {
-					System.out.println("✅ Expense deleted successfully.");
+					System.out.println("Expense deleted successfully.");
 				} else {
-					System.out.println("⚠️ No expense found with that ID.");
+					System.out.println("No expense found with that ID.");
 				}
 				break;
 
 			case 4:
-				// 💰 View Total Expenses
+				//View Total Expenses
 				double total = dao.getTotalExpenses();
-				System.out.println("💰 Total Expenses: ₹" + total);
+				System.out.println("Total Expenses: ₹" + total);
 				break;
 
 			case 5:
-				// 🔍 Search by Category
+				// Search by Category
 				System.out.print("Enter category to search: ");
 				String searchCategory = scanner.nextLine();
 				List<Expense> categoryExpenses = dao.getExpensesByCategory(searchCategory);
 
 				if (categoryExpenses.isEmpty()) {
-					System.out.println("⚠️ No expenses found in this category.");
+					System.out.println("No expenses found in this category.");
 				} else {
 					for (Expense exp : categoryExpenses) {
-						System.out.println("ID      : " + exp.getId());
-						System.out.println("Title   : " + exp.getTitle());
-						System.out.println("Amount  : ₹" + exp.getAmount());
-						System.out.println("Date    : " + exp.getExpenseDate());
-						System.out.println("-----------------------------");
+					    System.out.println("ID      : " + exp.getId());
+					    System.out.println("Title   : " + exp.getTitle());
+					    System.out.println("Amount  : Rs. " + exp.getAmount());
+					    System.out.println("Date    : " + exp.getExpenseDate());
+					    System.out.println("Notes   : " + exp.getNotes()); 
+					    System.out.println("-----------------------------");
 					}
+
 				}
 				break;
 
 			case 6:
-				// 🔎 Search by Date
+				//Search by Date
 				System.out.print("Enter date (yyyy-MM-dd): ");
 				String searchDate = scanner.nextLine();
 				List<Expense> dateExpenses = dao.getExpensesByDate(searchDate);
 
 				if (dateExpenses.isEmpty()) {
-					System.out.println("⚠️ No expenses found on this date.");
+					System.out.println("No expenses found on this date.");
 				} else {
 					for (Expense exp : dateExpenses) {
-						System.out.println("ID      : " + exp.getId());
-						System.out.println("Title   : " + exp.getTitle());
-						System.out.println("Amount  : ₹" + exp.getAmount());
-						System.out.println("Category: " + exp.getCategory());
-						System.out.println("-----------------------------");
+					    System.out.println("ID      : " + exp.getId());
+					    System.out.println("Title   : " + exp.getTitle());
+					    System.out.println("Amount  : ₹" + exp.getAmount());
+					    System.out.println("Category: " + exp.getCategory());
+					    System.out.println("Notes   : " + exp.getNotes());  
+					    System.out.println("-----------------------------");
 					}
 				}
 				break;
 
 			case 7:
-				// 🚪 Exit
-				System.out.println("👋 Exiting... Goodbye!");
+				//Exit
+				System.out.println("Exiting... Goodbye!");
 				System.exit(0);
 				break;
 
 			default:
-				System.out.println("❗ Invalid choice. Please try again.");
+				System.out.println("Invalid choice. Please try again.");
 			}
 		}
 	}
