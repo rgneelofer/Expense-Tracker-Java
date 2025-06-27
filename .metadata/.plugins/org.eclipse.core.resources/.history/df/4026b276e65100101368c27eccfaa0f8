@@ -1,0 +1,54 @@
+package com.expensetracker;
+
+import java.sql.*;
+import java.util.*;
+
+public class ExpenseDAO {
+
+	public boolean addExpense(Expense expense) {
+		String query = "INSERT INTO expenses (title, amount, category, expense_date) VALUES (?, ?, ?, ?)";
+
+		try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+			stmt.setString(1, expense.getTitle());
+			stmt.setDouble(2, expense.getAmount());
+			stmt.setString(3, expense.getCategory());
+			stmt.setString(4, expense.getExpenseDate());
+
+			int rowsInserted = stmt.executeUpdate();
+			return rowsInserted > 0;
+
+		} catch (SQLException e) {
+			System.out.println("❌ Error inserting expense:");
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public List<Expense> getAllExpenses() {
+		List<Expense> expenses = new ArrayList<>();
+
+		String query = "SELECT * FROM expenses";
+
+		try (Connection conn = DBConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				String title = rs.getString("title");
+				double amount = rs.getDouble("amount");
+				String category = rs.getString("category");
+				String date = rs.getString("expense_date");
+
+				Expense expense = new Expense(title, amount, category, date);
+				expenses.add(expense);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("❌ Error fetching expenses:");
+			e.printStackTrace();
+		}
+
+		return expenses;
+	}
+}

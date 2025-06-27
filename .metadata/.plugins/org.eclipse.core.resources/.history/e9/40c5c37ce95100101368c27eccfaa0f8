@@ -1,0 +1,109 @@
+package com.expensetracker;
+
+import java.util.*;
+
+public class MainApp {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		ExpenseDAO dao = new ExpenseDAO();
+
+		while (true) {
+			System.out.println("\n======== Expense Tracker Menu ========");
+			System.out.println("1. Add Expense");
+			System.out.println("2. View All Expenses");
+			System.out.println("3. Delete Expense by ID");
+			System.out.println("4. Exit");
+
+			System.out.print("Choose an option (1-4): ");
+
+			int choice = scanner.nextInt();
+			scanner.nextLine(); // consume leftover newline
+
+			switch (choice) {
+			case 1:
+				// ➕ Add Expense
+				System.out.print("Enter Title       : ");
+				String title = scanner.nextLine();
+
+				System.out.print("Enter Amount      : ₹");
+				double amount = scanner.nextDouble();
+				scanner.nextLine(); // consume newline
+
+				System.out.print("Enter Category    : ");
+				String category = scanner.nextLine();
+
+				System.out.print("Enter Date (yyyy-MM-dd): ");
+				String date = scanner.nextLine();
+
+				Expense expense = new Expense(title, amount, category, date);
+				boolean success = dao.addExpense(expense);
+
+				if (success) {
+					System.out.println("✅ Expense added successfully!");
+				} else {
+					System.out.println("❌ Failed to add expense.");
+				}
+				break;
+
+			case 2:
+				// 👀 View Expenses
+				List<Expense> expenses = dao.getAllExpenses();
+
+				if (expenses.isEmpty()) {
+					System.out.println("⚠️ No expenses found.");
+				} else {
+					System.out.println("\n-------- All Expenses --------");
+					for (Expense exp : expenses) {
+					    System.out.println("ID      : " + exp.getId());  // ← add this line
+					    System.out.println("Title   : " + exp.getTitle());
+					    System.out.println("Amount  : ₹" + exp.getAmount());
+					    System.out.println("Category: " + exp.getCategory());
+					    System.out.println("Date    : " + exp.getExpenseDate());
+					    System.out.println("-----------------------------");
+					}
+
+				}
+				break;
+
+//			case 3:
+//				// ❌ Delete Expense by Title
+//				System.out.print("Enter the title of the expense to delete: ");
+//				String deleteTitle = scanner.nextLine();
+//
+//				boolean deleted = dao.deleteExpenseByTitle(deleteTitle);
+//				if (deleted) {
+//					System.out.println("✅ Expense deleted successfully.");
+//				} else {
+//					System.out.println("⚠️ No expense found with that title.");
+//				}
+//				break;
+				
+			case 3:
+			    // ❌ Delete Expense by ID
+			    System.out.print("Enter the ID of the expense to delete: ");
+			    int deleteId = scanner.nextInt();
+			    scanner.nextLine(); // consume newline
+
+			    boolean deletedById = dao.deleteExpenseById(deleteId);
+			    if (deletedById) {
+			        System.out.println("✅ Expense deleted successfully.");
+			    } else {
+			        System.out.println("⚠️ No expense found with that ID.");
+			    }
+			    break;
+
+
+			case 4:
+				// 🚪 Exit
+				System.out.println("3. Delete Expense by Title");
+				System.out.println("4. Exit");
+
+				System.exit(0);
+				break;
+
+			default:
+				System.out.println("❗ Invalid choice. Please try again.");
+			}
+		}
+	}
+}
